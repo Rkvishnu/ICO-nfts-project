@@ -7,7 +7,7 @@ import {
   NFT_CONTRACT_ADDRESS,
   TOKEN_CONTRACT_ABI,
   TOKEN_CONTRACT_ADDRESS,
-} from "../constants";
+} from "../constants/index";
 import styles from "../styles/Home.module.css";
 
 export default function Home() {
@@ -405,7 +405,7 @@ export default function Home() {
           )}
         </div>
         <div>
-          <img className={styles.image} src="./0.svg" />
+          <image className={styles.image} src="./0.svg" alt="" />
         </div>
       </div>
 
