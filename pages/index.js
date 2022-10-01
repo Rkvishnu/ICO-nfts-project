@@ -17,13 +17,10 @@ export default function Home() {
   const [walletConnected, setWalletConnected] = useState(false);
   // loading is set to true when we are waiting for a transaction to get mined
   const [loading, setLoading] = useState(false);
-  // tokensToBeClaimed keeps track of the number of tokens that can be claimed
-  // based on the Crypto Dev NFT's held by the user for which they havent claimed the tokens
+  
   const [tokensToBeClaimed, setTokensToBeClaimed] = useState(zero);
-  // balanceOfCryptoDevTokens keeps track of number of Crypto Dev tokens owned by an address
   const [balanceOfCryptoDevTokens, setBalanceOfCryptoDevTokens] =
     useState(zero);
-  // amount of the tokens that the user wants to mint
   const [tokenAmount, setTokenAmount] = useState(zero);
   // tokensMinted is the total number of tokens that have been minted till now out of 10000(max total supply)
   const [tokensMinted, setTokensMinted] = useState(zero);
@@ -265,9 +262,9 @@ export default function Home() {
 
     // If user is not connected to the Rinkeby network, let them know and throw an error
     const { chainId } = await web3Provider.getNetwork();
-    if (chainId !== 4) {
-      window.alert("Change the network to Rinkeby");
-      throw new Error("Change network to Rinkeby");
+    if (chainId !== 5) {
+      window.alert("Change the network to Goerli");
+      throw new Error("Change network to Goerli");
     }
 
     if (needSigner) {
@@ -291,9 +288,7 @@ export default function Home() {
     }
   };
 
-  // useEffects are used to react to changes in state of the website
-  // The array at the end of function call represents what state changes will trigger this effect
-  // In this case, whenever the value of `walletConnected` changes - this effect will be called
+
   useEffect(() => {
     // if wallet is not connected, create a new instance of Web3Modal and connect the MetaMask wallet
     if (!walletConnected) {
@@ -356,6 +351,8 @@ export default function Home() {
             placeholder="Amount of Tokens"
             // BigNumber.from converts the `e.target.value` to a BigNumber
             onChange={(e) => setTokenAmount(BigNumber.from(e.target.value))}
+            // onChange={(e) => setTokenAmount(e.target.value)}
+
             className={styles.input}
           />
         </div>
@@ -405,11 +402,11 @@ export default function Home() {
           )}
         </div>
         <div>
-          <image className={styles.image} src="./0.svg" alt="" />
+          <img className={styles.image} src="./0.svg" alt="" />
         </div>
       </div>
 
-      <footer className={styles.footer}>by Crypto Devs</footer>
+    
     </div>
   );
 }
